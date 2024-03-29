@@ -1,0 +1,53 @@
+<template>
+    <!--Filter Section-->
+    <div>
+        <lightning-layout 
+          horizontal-align="center"
+          pull-to-boundary="small"
+          vertical-align="start"
+        >
+
+<!--   <lightning-layout-item padding="around-small" size="4">
+            <lightning-combobox
+            name="Recipe Type"
+            label="Recipe Type"
+            value={SelectedValue}
+            placeholder="Select Recipe Type"
+            options={typeoptions}
+            onchange={handleChange} ></lightning-combobox>  
+        </lightning-layout-item>
+           --> 
+        <lightning-layout-item padding="around-small" size="8"> 
+            
+              <lightning-input
+                type="search"
+                name="search"
+                label="Enter Search Recipe"
+                placeholder="Search Recipes"
+                is-loading={loading}
+                onchange={handleChange}
+              ></lightning-input>
+        
+        </lightning-layout-item>
+
+        </lightning-layout>
+    </div>
+    <!--Display Section-->
+    <template lwc:if={DisplaySearchResult}>
+        <div class = "slds-var-m-top_large slds-scrollable_y displayStyle slds-box">
+        <lightning-layout 
+          horizontal-align="center"
+          multiple-rows="true">
+        <template for:each={SearchResult} for:item="searchItem">
+           <lightning-layout-item size="3" 
+                                  padding="around-small"
+                                  key={searchItem.recipe.label}
+                                  > 
+
+            <c-recipe-tile recipes={searchItem}></c-recipe-tile>
+           </lightning-layout-item>
+        </template>
+        </lightning-layout>
+    </div>
+</template>
+</template>
