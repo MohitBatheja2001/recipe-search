@@ -1,19 +1,12 @@
-import { LightningElement ,wire } from 'lwc';
-// Import message service features required for publishing and the message channel
-import { publish, MessageContext } from 'lightning/messageService';
-import RECIPE_CHANNEL from '@salesforce/messageChannel/recipeChannel__c';
-
-    const DELAY = 300;
-export default class RecipeSearch extends LightningElement {
+import { LightningElement ,api, track } from 'lwc';
+const DELAY = 300;
+export default class SampleSearch extends LightningElement {
     SelectedType = 'None';
     loading = false; 
     SelectedSearch = ''; 
     delayTimeout ; 
-    SearchResult = []; 
+    @api SearchResult = []; 
     CurrentSelectedRecipe = '';   
-
-    @wire(MessageContext)
-    messageContext;
 
        get typeoptions() {
         return [
@@ -63,21 +56,6 @@ export default class RecipeSearch extends LightningElement {
         this.SearchResult = data.hits;
         console.log("SearchResult" , this.SearchResult);
       }
-    }
-
-    get DisplaySearchResult(){
-      return this.SearchResult.length > 0 ? true : false;
- }
-
-
- handleselection(event)
-    {
-      this.CurrentSelectedRecipe = event.detail;
-      console.log( 'Selected Recipe', this.CurrentSelectedRecipe);
-      
-      const payload = { recipeId: this.CurrentSelectedRecipe };
-
-        publish(this.messageContext, RECIPE_CHANNEL, payload);
     }
 
 }

@@ -1,24 +1,27 @@
 <template>
     <!--Filter Section-->
-    <div>
-        <lightning-layout 
+  <div>
+         <lightning-card icon-name="standard:account" variant="base" title="Search Recipe ">
+
+         <lightning-layout 
           horizontal-align="center"
           pull-to-boundary="small"
           vertical-align="start"
-        >
-
-<!--   <lightning-layout-item padding="around-small" size="4">
-            <lightning-combobox
-            name="Recipe Type"
-            label="Recipe Type"
-            value={SelectedValue}
-            placeholder="Select Recipe Type"
-            options={typeoptions}
-            onchange={handleChange} ></lightning-combobox>  
+         >
+        <lightning-layout-item padding="around-medium" size="4">
+               <lightning-combobox
+                 name="Cuisine Type"
+                 label="Cuisine Type"
+                 value={SelectedType}
+                 placeholder="Select Recipe Type"
+                 options={typeoptions}
+                 onchange={handleChange}
+                 padding="around-small" >
+               </lightning-combobox>  
         </lightning-layout-item>
-           --> 
-        <lightning-layout-item padding="around-small" size="8"> 
-            
+
+       <lightning-layout-item padding="around-medium" size="8"> 
+
               <lightning-input
                 type="search"
                 name="search"
@@ -26,25 +29,28 @@
                 placeholder="Search Recipes"
                 is-loading={loading}
                 onchange={handleChange}
+                
               ></lightning-input>
-        
         </lightning-layout-item>
-
         </lightning-layout>
-    </div>
+        </lightning-card>
+  </div>
     <!--Display Section-->
+    
     <template lwc:if={DisplaySearchResult}>
         <div class = "slds-var-m-top_large slds-scrollable_y displayStyle slds-box">
         <lightning-layout 
           horizontal-align="center"
           multiple-rows="true">
         <template for:each={SearchResult} for:item="searchItem">
-           <lightning-layout-item size="3" 
+           <lightning-layout-item size="4" 
                                   padding="around-small"
-                                  key={searchItem.recipe.label}
+                                  key={searchItem.recipe.uri}
                                   > 
-
-            <c-recipe-tile recipes={searchItem}></c-recipe-tile>
+            <c-recipe-tile recipes={searchItem}
+            selected-recipe-id={CurrentSelectedRecipe}
+            onselectedrecipe ={handleselection}
+            > </c-recipe-tile>
            </lightning-layout-item>
         </template>
         </lightning-layout>

@@ -1,3 +1,42 @@
 <template>
-    
+    <template lwc:if={loadComponent}>
+        <div class="slds-var-p-around_small container">
+         <lightning-card title="Selected Recipe Details" class="recipe-card">
+            <lightning-button 
+              variant="Brand"
+              label="Add to Favorite" 
+              onclick={handleFavoriteClick}
+              slot="actions" 
+            ></lightning-button>
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-var-m-around_small recipe-image">
+                <img src={clickedRecipeDetails.recipe.image} alt="Image Not Found"/>
+                </div>
+                <div class="slds-col">
+                <h2 class="recipe-label slds-var-m-around_small">
+                  Recipe Name : {clickedRecipeDetails.recipe.label}
+                </h2>
+                <div class="slds-var-m-around_small recipe-info">
+                      <p><b>Calories :</b> {clickedRecipeDetails.recipe.calories}</p>
+                      <p><b>Recipe Type :</b> {clickedRecipeDetails.recipe.cuisineType}</p>
+                      <p><b>Dish Type :</b> {clickedRecipeDetails.recipe.dishType}</p>
+                      <template for:each={clickedRecipeDetails.recipe.ingredients} for:item="ingredient">
+                        <p key={ingredient.text}>
+                            
+                            <b>Ingredients :</b> {ingredient.text} {ingredient.quantity} {ingredient.measure} of {ingredient.food}
+                        </p>
+                        
+                       </template>
+                      <p><b>HealthLabels :</b> {clickedRecipeDetails.recipe.healthLabels}</p>
+                      <p><b>Go to Complete Recipe : </b><a href={clickedRecipeDetails.recipe.url} target="_blank"> {clickedRecipeDetails.recipe.url}</a></p>
+
+                </div>
+                </div>
+                </div>  
+            </lightning-card>
+        </div>
+    </template>
 </template>
+
+
+

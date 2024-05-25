@@ -1,0 +1,19 @@
+<template>
+    <lightning-card>
+        <lightning-layout horizontal-align="center"
+                          multiple-rows="true">
+                          <div class="container" >
+                    <template for:each={searchedRecipe} for:item="recipes" >
+                        <lightning-layout-item key={recipes.recipe.uri} size="3"
+                                               padding="around-small" >
+                             <img src={recipes.recipe.image} alt={recipes.recipe.label}/>
+                             
+
+
+                        </lightning-layout-item>
+                        
+                    </template>
+                </div>
+                        </lightning-layout>
+    </lightning-card>
+</template>

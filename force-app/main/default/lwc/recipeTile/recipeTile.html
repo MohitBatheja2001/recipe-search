@@ -1,11 +1,20 @@
 <template>
-    <div class="tile">
+    <div class={tileSelected} onclick={handleClickrecipe}>
         <div class="innerTile">
         <!--   <img itemprop="image" src={recipes.images.REGULAR.url}/>  -->
-        <img src={recipes.image} alt={recipes.label} />
-           <div class="innerThird">
-         <!-- <h1>{recipes.label}</h1> -->
-            </div>
+        <img src={recipes.recipe.image} alt={recipes.recipe.label} />
+
+         <div class="innerThird">
+         <h1 aria-label="Name">{recipes.recipe.label}</h1>
+
+         
+         <!-- <h1 aria-label="Calories">{recipes.recipe.calories}</h1> -->
+          
+        </div>
         </div>
     </div>
+    
+
 </template>
+
+

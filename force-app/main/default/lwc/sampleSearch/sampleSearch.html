@@ -1,0 +1,37 @@
+<template>
+    <div>
+        <lightning-card icon-name="standard:account" variant="base" title="Search Recipe ">
+
+        <lightning-layout 
+         horizontal-align="center"
+         pull-to-boundary="small"
+         vertical-align="start"
+        >
+       <lightning-layout-item padding="around-small" size="4">
+              <lightning-combobox
+                name="Cuisine Type"
+                label="Cuisine Type"
+                value={SelectedType}
+                placeholder="Select Recipe Type"
+                options={typeoptions}
+                onchange={handleChange}
+                padding="around-small" >
+              </lightning-combobox>  
+       </lightning-layout-item>
+
+      <lightning-layout-item padding="around-small" size="8"> 
+
+             <lightning-input
+               type="search"
+               name="search"
+               label="Enter Search Recipe"
+               placeholder="Search Recipes"
+               is-loading={loading}
+               onchange={handleChange}
+               
+             ></lightning-input>
+       </lightning-layout-item>
+       </lightning-layout>
+       </lightning-card>
+ </div>
+</template>
